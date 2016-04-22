@@ -118,27 +118,26 @@ VoteTracker.prototype.retrieveData = function(ev) {
 };
 
 VoteTracker.prototype.resetData = function (ev){
-  document.getElementById('confirmButton').className = null;
-  document.getElementById('cancel').className = null;
+  $('#confirmButton, #cancel').removeClass('hidden');
 };
 
 VoteTracker.prototype.confirmData = function (ev) {
   localStorage.setItem('superKey', 'null');
-  document.getElementById('confirmButton').className = 'hidden';
-  document.getElementById('cancel').className = 'hidden';
+  $('#confirmButton, #cancel').addClass('hidden');
 };
 
 VoteTracker.prototype.cancelReset = function (ev) {
-  document.getElementById('confirmButton').className = 'hidden';
-  document.getElementById('cancel').className = 'hidden';
+  $('#confirmButton, #cancel').addClass('hidden');
 };
 
 function handleTheReset (event) {
   didReset = true;
-  document.getElementById('clickOne').innerHTML = null;
-  document.getElementById('clickOne').className = null;
-  document.getElementById('clickTwo').innerHTML = null;
-  document.getElementById('clickTwo').className = null;
+  $('#clickOne, #clickTwo').html('');
+  //TODO remove all commented out code we KNOW is obsolete
+  // document.getElementById('clickOne').innerHTML = null;
+  // document.getElementById('clickOne').className = null;
+  // document.getElementById('clickTwo').innerHTML = null;
+  // document.getElementById('clickTwo').className = null;
   pageOneTracker.displayImg();
 }
 
@@ -152,8 +151,8 @@ var pageOneTracker = new VoteTracker();
 pageOneTracker.point1.on('click', pageOneTracker.handleImgClicks);
 pageOneTracker.point2.on('click', pageOneTracker.handleImgClicks);
 
-document.getElementById('storeButton').addEventListener('click', pageOneTracker.storeData);
-document.getElementById('retrieveButton').addEventListener('click', pageOneTracker.retrieveData);
-document.getElementById('resetButton').addEventListener('click', pageOneTracker.resetData);
-document.getElementById('confirmButton').addEventListener('click', pageOneTracker.confirmData);
-document.getElementById('cancel').addEventListener('click', pageOneTracker.cancelReset);
+$('#storeButton').on('click', pageOneTracker.storeData);
+$('#retrieveButton').on('click', pageOneTracker.retrieveData);
+$('#resetButton').on('click', pageOneTracker.resetData);
+$('#confirmButton').on('click', pageOneTracker.confirmData);
+$('#cancel').on('click', pageOneTracker.cancelReset);
