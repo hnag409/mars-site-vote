@@ -1,18 +1,7 @@
-/*Outer space color palette, from adobe cc*/
-/*
-#2b448c
-#2a558c
-#5ab8f3
-#a0e3f2
-#0d0d0d
-*/
-
 
 #directions {
   margin-left: 5px;
 }
-
-
 
 #image1 {
   padding-left: 5px;
@@ -21,8 +10,6 @@
 #image2 {
   padding-left: 5px;
 }
-
-
 
 .hidden {
   display: none;
