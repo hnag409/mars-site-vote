@@ -39,17 +39,13 @@ var VoteTracker = function() {
   this.resetP = $('#resetP');
 
   this.displayImg = function () {
-
     whichSitesNow = this.randomPickTwo();
-
     this.point1 = this.findTagOne.append($('<div>'));
     this.point2 = this.findTagTwo.append($('<div>'));
     this.findTagOne.html('<img src="' + imgArray[whichSitesNow[0]].fileNameForImg + '" alt="The first site to onsider" title="This is the first landing site to consider for a mission to Mars. Click on the image to vote in favor.">');
     this.findTagTwo.html('<img src="' + imgArray[whichSitesNow[1]].fileNameForImg + '" alt="The second site to consider" title="This is the second landing site to consider for a mission to Mars. Click on the image to vote in favor.">');
-    this.point1.on('click', this.handleImgClicks);
-    this.point2.on('click', this.handleImgClicks);
-
   };
+
   this.displayImg();
 };
 
@@ -81,12 +77,12 @@ VoteTracker.prototype.populateChartData = function (pData) {
 };
 
 VoteTracker.prototype.handleImgClicks = function (event) {
-  var tagHandle = (event.currentTarget.parentElement.id == 'clickOne') ? 0 : 1;
+  var tagHandle = (event.currentTarget.id == 'clickOne') ? 0 : 1;
   var ser = whichSitesNow[tagHandle];
   if(didReset) {
     imgArray[ser].numberOfVotes++;
     didReset = false;
-    event.currentTarget.parentElement.className = 'highlight';
+    event.currentTarget.className = 'highlight';
   }
   raiseTheChartFlag();
   handleTheReset(event);
@@ -132,7 +128,8 @@ VoteTracker.prototype.cancelReset = function (ev) {
 
 function handleTheReset (event) {
   didReset = true;
-  $('#clickOne, #clickTwo').html('');
+  $('#clickOne, #clickTwo').html('').removeClass('hightlight');
+  console.log('test');
   //TODO remove all commented out code we KNOW is obsolete
   // document.getElementById('clickOne').innerHTML = null;
   // document.getElementById('clickOne').className = null;
@@ -148,8 +145,8 @@ function raiseTheChartFlag() {
 //make the object, it calls all of the other constructors
 var pageOneTracker = new VoteTracker();
 //add listeners to the elements we want to get events from
-pageOneTracker.point1.on('click', pageOneTracker.handleImgClicks);
-pageOneTracker.point2.on('click', pageOneTracker.handleImgClicks);
+pageOneTracker.point1.on('click', 'img', pageOneTracker.handleImgClicks);
+pageOneTracker.point2.on('click', 'img', pageOneTracker.handleImgClicks);
 
 $('#storeButton').on('click', pageOneTracker.storeData);
 $('#retrieveButton').on('click', pageOneTracker.retrieveData);
