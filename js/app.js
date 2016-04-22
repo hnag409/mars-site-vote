@@ -34,18 +34,20 @@ for (var i = 0; i < imgFileLocations.length; i++) {
 }
 
 var VoteTracker = function() {
-  this.findTagOne = document.getElementById('clickOne');
-  this.findTagTwo = document.getElementById('clickTwo');
-  this.resetP = document.getElementById('resetP');
+  this.findTagOne = $('#clickOne');
+  this.findTagTwo = $('#clickTwo');
+  this.resetP = $('#resetP');
 
   this.displayImg = function () {
+
     whichSitesNow = this.randomPickTwo();
-    this.point1 = this.findTagOne.appendChild(document.createElement('div'));
-    this.point2 = this.findTagTwo.appendChild(document.createElement('div'));
-    this.point1.innerHTML = '<img src="' + imgArray[whichSitesNow[0]].fileNameForImg + '" alt="The first site to consider" title="This is the first landing site to consider for a mission to Mars. Click on the image to vote in favor.">';
-    this.point2.innerHTML = '<img src="' + imgArray[whichSitesNow[1]].fileNameForImg + '" alt="The second site to consider" title="This is the second landing site to consider for a mission to Mars. Click on the image to vote in favor.">';
-    this.point1.addEventListener('click', this.handleImgClicks);
-    this.point2.addEventListener('click', this.handleImgClicks);
+
+    this.point1 = this.findTagOne.append($('<div>'));
+    this.point2 = this.findTagTwo.append($('<div>'));
+    this.findTagOne.html('<img src="' + imgArray[whichSitesNow[0]].fileNameForImg + '" alt="The first site to onsider" title="This is the first landing site to consider for a mission to Mars. Click on the image to vote in favor.">');
+    this.findTagTwo.html('<img src="' + imgArray[whichSitesNow[1]].fileNameForImg + '" alt="The second site to consider" title="This is the second landing site to consider for a mission to Mars. Click on the image to vote in favor.">');
+    this.point1.on('click', this.handleImgClicks);
+    this.point2.on('click', this.handleImgClicks);
 
   };
   this.displayImg();
@@ -147,8 +149,8 @@ function raiseTheChartFlag() {
 //make the object, it calls all of the other constructors
 var pageOneTracker = new VoteTracker();
 //add listeners to the elements we want to get events from
-pageOneTracker.point1.addEventListener('click', pageOneTracker.handleImgClicks);
-pageOneTracker.point2.addEventListener('click', pageOneTracker.handleImgClicks);
+pageOneTracker.point1.on('click', pageOneTracker.handleImgClicks);
+pageOneTracker.point2.on('click', pageOneTracker.handleImgClicks);
 
 document.getElementById('storeButton').addEventListener('click', pageOneTracker.storeData);
 document.getElementById('retrieveButton').addEventListener('click', pageOneTracker.retrieveData);
