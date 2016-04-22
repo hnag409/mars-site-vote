@@ -29,9 +29,10 @@ var imgFileLocations = [
 var didReset = true;
 var whichSitesNow = [0 , 1];
 var imgArray = [];
-for (var i = 0; i < imgFileLocations.length; i++) {
-  imgArray[i] = new ImgObj(imgFileLocations[i]);
-}
+
+imgFileLocations.forEach(function(image) {
+  imgArray.push(new ImgObj(image));
+});
 
 var VoteTracker = function() {
   this.findTagOne = $('#clickOne');
@@ -70,9 +71,9 @@ VoteTracker.prototype.makeChart = function () {
 };
 
 VoteTracker.prototype.populateChartData = function (pData) {
-  for (var i = 0; i < imgArray.length; i++) {
-    pData.datasets[0].data[i] = imgArray[i].numberOfVotes;
-  };
+  imgArray.forEach(function(currentImg, index){
+    pData.datasets[0].data[index] = imgArray[index].numberOfVotes;
+  });
   return pData;
 };
 
@@ -129,12 +130,6 @@ VoteTracker.prototype.cancelReset = function (ev) {
 function handleTheReset (event) {
   didReset = true;
   $('#clickOne, #clickTwo').html('').removeClass('hightlight');
-  console.log('test');
-  //TODO remove all commented out code we KNOW is obsolete
-  // document.getElementById('clickOne').innerHTML = null;
-  // document.getElementById('clickOne').className = null;
-  // document.getElementById('clickTwo').innerHTML = null;
-  // document.getElementById('clickTwo').className = null;
   pageOneTracker.displayImg();
 }
 
