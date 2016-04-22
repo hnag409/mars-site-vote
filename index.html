@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="templates/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="templates/css/skeleton.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <title>Mars Site Vote</title>
+  </head>
+  <body>
+    <header>
+      <h1>Mars Site Voting</h1>
+    </header>
+    <main class="container u-full-width">
+      <p id="directions">Below are two possible sites on Mars to land for our next mission. Please click on your preferred site of the two presented options.</p>
+      <div class="row">
+        <section id="image1" class="five columns">
+          <p id="clickOne"></p>
+        </section>
+        <section id="buttons" class="two columns">
+          <button id="storeButton">Store Votes</button>
+          <button id="retrieveButton">Retrieve Votes</button>
+          <button id="resetButton">Reset Data</button>
+          <button class="hidden" id="confirmButton">Confirm Reset Data</button>
+          <button class="hidden" id="cancel">Cancel Reset</button>
+        </section>
+        <section id="image2" class="five columns">
+          <p id="clickTwo"></p>
+        </section>
 
-  <title>Mars Site Vote</title>
-</head>
-<body>
-
-  <header><h1>Mars Site Voting</h1></header>
-
-  <main class='container, u-full-width'>
-    <p id='directions'>Below are two possible sites on Mars to land for our next mission. Please click on your preferred site of the two presented options.</p>
-
-    <div class='row'>
-      <section id='image1' class='five columns'>
-      <p id='clickOne'></p>
+      </div>
+      <section>
+        <canvas id="voteChart" width="400" height="400"></canvas>
       </section>
-
-      <section id='buttons' class='two columns'>
-        <button id='storeButton'>Store Votes</button>
-        <button id='retrieveButton'>Retrieve Votes</button>
-        <button id='resetButton'>Reset Data</button>
-        <button class='hidden' id='confirmButton'>Confirm Reset Data</button>
-        <button class='hidden' id='cancel'>Cancel Reset</button>
-      </section>
-
-      <section id='image2' class='five columns'>
-        <p id='clickTwo'></p>
-      </section>
-    </div>
-
-    <section>
-      <canvas id='voteChart' width="400" height="400"></canvas>
-    </section>
-
-    <script src='Chart.js'></script>
-    <script src='app.js'></script>
-
-  </main>
-
-  <footer>
-  </footer>
-
-</body>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2016 Linky Dinkies</p>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/Chart.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript">
+      VoteTracker.initPage();
+    </script>
+  </body>
 </html>
